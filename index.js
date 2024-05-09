@@ -1,34 +1,79 @@
-/**
- * Debugging Guide
- * 1. Make the code more readable
- * 2. Pick up calculation errors
- * 3. Make these calculations robust such that the calculation does not give an incorrect result, it throws an error to the user if something has gone wrong (parameter used with an incorrect unit of measurement, etc)
- */
 
-// Given Parameters
-const vel = 10000; // velocity (km/h)
-const acc = 3; // acceleration (m/s^2)
-const time = 3600; // seconds (1 hour)
-const d = 0; // distance (km)
-const fuel = 5000; // remaining fuel (kg)
-const fbr = 0.5; // fuel burn rate (kg/s)
+// Given parameters as an object (similar to props in React)
+const parameters = {
+  initialVelocity: 10000, // velocity (km/h)
+  acceleration: 3, // acceleration (m/s^2)
+  time: 3600, // seconds (1 hour)
+  initialDistance: 0, // distance (km)
+  remainingFuel: 5000, // remaining fuel (kg)
+  fuelBurnRate: 0.5 // fuel burn rate (kg/s)
+};
 
+// Function to calculate new velocity based on acceleration
+function calcNewVel(props) {
+  // Destructure props object to get the necessary variables
+  const { initialVelocity, acceleration, time } = props;
 
-const d2 = d + (vel*time) //calcultes new distance
-const rf = fbr*time //calculates remaining fuel
-const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+  // Convert acceleration from m/s^2 to km/h and calculate the change in velocity
+  const changeInVelocity = acceleration * time * 3.6;
 
-// Pick up an error with how the function below is called and make it robust to such errors
-calcNewVel = (vel, acc, time) => { 
-  return vel + (acc*time)
+  // Return new velocity
+  return initialVelocity + changeInVelocity;
 }
 
-console.log(`Corrected New Velocity: ${vel2} km/h`);
-console.log(`Corrected New Distance: ${d2} km`);
-console.log(`Corrected Remaining Fuel: ${rf} kg`);
 
+// Function to calculate new distance
+function calcNewDistance(props) {
+  // Destructure props object to get the necessary variables
+  const { initialVelocity, initialDistance, time } = props;
 
+  // Convert time from seconds to hours and calculate new distance
+  return initialDistance + (initialVelocity * (time / 3600));
+}
 
+// Function to calculate remaining fuel
+function calcRemainingFuel(props) {
+  // Destructure props object to get the necessary variables
+  const { remainingFuel, fuelBurnRate, time } = props;
 
+  // Calculate remaining fuel
+  return remainingFuel - (fuelBurnRate * time);
+}
+
+// Calculate corrected new velocity
+let correctedNewVelocity;
+try {
+  // Pass the parameters object as props to the calcNewVel function
+  correctedNewVelocity = calcNewVel(parameters);
+} catch (error) {
+  console.error(`Error: ${error.message}`);
+  correctedNewVelocity = parameters.initialVelocity; // Use initial velocity as a fallback
+}
+
+// Expected values for the corrected results
+const expectedNewVelocity = 48880; // Expected velocity in km/h
+const expectedNewDistance = 10000; // Expected distance in km
+const expectedRemainingFuel = 3200; // Expected remaining fuel in kg
+
+// Calculate corrected new distance and remaining fuel
+// Pass the parameters object as props to the calcNewDistance and calcRemainingFuel functions
+const correctedNewDistance = calcNewDistance(parameters);
+const correctedRemainingFuel = calcRemainingFuel(parameters);
+
+// Check the calculated results against the expected values
+if (
+  correctedNewVelocity.toFixed(2) != expectedNewVelocity.toFixed(2) ||
+  correctedNewDistance.toFixed(2) != expectedNewDistance.toFixed(2) ||
+  correctedRemainingFuel != expectedRemainingFuel
+) {
+  console.error("Error: Calculated results do not match expected values!");
+} else {
+  console.log("All calculated results match expected values.");
+}
+
+// Output the corrected results
+console.log(`Corrected New Velocity: ${correctedNewVelocity.toFixed(2)} km/h`);
+console.log(`Corrected New Distance: ${correctedNewDistance.toFixed(2)} km`);
+console.log(`Corrected Remaining Fuel: ${correctedRemainingFuel} kg`);
 
 

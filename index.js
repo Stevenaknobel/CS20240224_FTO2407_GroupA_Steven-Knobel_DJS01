@@ -60,3 +60,14 @@ console.log(`Corrected New Velocity: ${correctedNewVelocity.toFixed(2)} km/h`);
 console.log(`Corrected New Distance: ${correctedNewDistance.toFixed(2)} km`);
 console.log(`Corrected Remaining Fuel: ${correctedRemainingFuel} kg`);
 
+// Check the calculated results against the expected values
+if (
+  correctedNewVelocity.toFixed(2) !== expectedNewVelocity.toFixed(2) ||
+  correctedNewDistance.toFixed(2) !== expectedNewDistance.toFixed(2) ||
+  correctedRemainingFuel !== expectedRemainingFuel
+) {
+  console.error("Error: Calculated results do not match expected values!");
+} else {
+  console.log("All calculated results match expected values.");
+}
+

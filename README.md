@@ -1,46 +1,31 @@
 ### DJS01: Mars Climate Orbiter Challenge
 
-The Mars Climate Orbiter incident in 1999 is a stark reminder of the importance of precision in space missions, highlighting how a simple unit mismatch led to the loss of the spacecraft. This challenge seeks to simulate similar challenges in a spacecraft navigation system, emphasising the need for accuracy in calculations.
-
-#### Challenge Overview
-
-This challenge invites students to debug, refactor, and enhance JavaScript functions designed for determining the trajectory of a spacecraft. The initial functions are flawed and may result in incorrect calculations.
-
 ![alt text](mars.gif)
 
-##### Problem Areas to Address
+### Kinematic Calculations and Verification
+This program calculates the new velocity, distance, and remaining fuel for an object in motion based on provided initial parameters. The calculations use a set of functions and then verify the results against expected values. This program demonstrates the use of props-like objects in JavaScript for passing parameters to functions.
 
-1. **Unit Mismatch**: The provided functions fail to convert units correctly, leading to calculation inaccuracies.
-2. **Parameter Misalignment**: Parameters are not handled in a way that prevents or highlights the potential for unit mismatch errors, leading to possible confusion.
-
-##### Initial Parameters
-
-- **Initial Velocity (`vel`)**: The starting speed of the spacecraft, 10,000 km/h.
-- **Acceleration (`acc`)**: The spacecraft's acceleration, 3 m/s².
-- **Time (`time`)**: The duration of the calculation, 3,600 seconds (equivalent to 1 hour).
-- **Initial Distance (`d`)**: The starting distance from the reference point, 0 km.
-- **Initial Fuel (`fuel`)**: The starting amount of fuel, 5,000 kg.
-- **Fuel Burn Rate (`fbr`)**: The rate at which fuel is consumed, 0.5 kg/s.
-
-##### Expected Corrected Results
-
-- **New Velocity**: Approximately 48880 km/h after correction.
-- **New Distance**: Approximately 10000 km after correction.
-- **Remaining Fuel**: Approximately 3,200 kg after correction.
-
-#### Your Task
-
-1. **Identify and Understand Errors**: Analyse the provided functions to determine how unit mismatches and parameter misalignments cause incorrect results.
-2. **Refactor and Correct**: Modify the functions to handle parameters more effectively, incorporating object destructuring for clarity and implementing necessary unit conversions.
-
-#### Solution Approach
-
-- Use object destructuring in function parameters for better clarity.
-- Implement accurate unit conversions within the functions.
-- Ensure the corrected functions address the issues of unit mismatches and parameter clarity.
-
-#### Debugging Guide
-
-1. Enhance code readability for easier debugging.
-2. Identify and correct calculation errors.
-3. Improve the robustness of calculations. If incorrect units are used or other errors are detected, the code should notify the user instead of producing an incorrect result.
+### Program Overview
+**Parameters Object: The program takes a set of parameters, including initial velocity, acceleration, time, initial distance, remaining fuel, and fuel burn rate, as an object (similar to props in React).
+**Calculation Functions: There are three main functions that perform calculations based on the provided parameters:
+**calcNewVel(props): Calculates the new velocity based on the initial velocity, acceleration, and time provided in the props object.
+**calcNewDistance(props): Calculates the new distance based on the initial velocity, initial distance, and time provided in the props object.
+**calcRemainingFuel(props): Calculates the remaining fuel based on the initial remaining fuel, fuel burn rate, and time provided in the props object.
+**Expected Values: The program contains expected values for the corrected new velocity, distance, and remaining fuel.
+**Verification: The program verifies the calculated results against the expected values and prints a message indicating whether the calculated results match the expected values.
+**Output: The program outputs the corrected results for new velocity, distance, and remaining fuel.
+### How to Run the Program
+**Make sure you have the code in a JavaScript file and the necessary runtime to execute it.
+**Execute the script.
+**The program will calculate the corrected new velocity, distance, and remaining fuel based on the provided parameters.
+**The program will verify the calculated results against the expected values and print whether the results match or not.
+**The program will print the corrected results.
+**Example Output
+**Corrected New Velocity: Approximately 48880.00 km/h.
+**Corrected New Distance: 10000.00 km.
+**Corrected Remaining Fuel: 3200 kg.
+**If the calculated results match the expected values, the program will print: All calculated results match expected values.
+**If the calculated results do not match the expected values, the program will print: Error: Calculated results do not match expected values!
+## Additional Notes
+**The program uses strict comparisons to ensure the calculated values match the expected values precisely.
+**The program handles exceptions during the calculation of new velocity and will revert to initial velocity in case of an error.

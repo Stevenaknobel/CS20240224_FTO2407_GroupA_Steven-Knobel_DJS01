@@ -50,24 +50,30 @@ try {
   correctedNewVelocity = parameters.initialVelocity; // Use initial velocity as a fallback
 }
 
+// Expected values for the corrected results
+const expectedNewVelocity = 48880; // Expected velocity in km/h
+const expectedNewDistance = 10000; // Expected distance in km
+const expectedRemainingFuel = 3200; // Expected remaining fuel in kg
+
 // Calculate corrected new distance and remaining fuel
 // Pass the parameters object as props to the calcNewDistance and calcRemainingFuel functions
 const correctedNewDistance = calcNewDistance(parameters);
 const correctedRemainingFuel = calcRemainingFuel(parameters);
 
-// Output the results
-console.log(`Corrected New Velocity: ${correctedNewVelocity.toFixed(2)} km/h`);
-console.log(`Corrected New Distance: ${correctedNewDistance.toFixed(2)} km`);
-console.log(`Corrected Remaining Fuel: ${correctedRemainingFuel} kg`);
-
 // Check the calculated results against the expected values
 if (
-  correctedNewVelocity.toFixed(2) !== expectedNewVelocity.toFixed(2) ||
-  correctedNewDistance.toFixed(2) !== expectedNewDistance.toFixed(2) ||
-  correctedRemainingFuel !== expectedRemainingFuel
+  correctedNewVelocity.toFixed(2) != expectedNewVelocity.toFixed(2) ||
+  correctedNewDistance.toFixed(2) != expectedNewDistance.toFixed(2) ||
+  correctedRemainingFuel != expectedRemainingFuel
 ) {
   console.error("Error: Calculated results do not match expected values!");
 } else {
   console.log("All calculated results match expected values.");
 }
+
+// Output the corrected results
+console.log(`Corrected New Velocity: ${correctedNewVelocity.toFixed(2)} km/h`);
+console.log(`Corrected New Distance: ${correctedNewDistance.toFixed(2)} km`);
+console.log(`Corrected Remaining Fuel: ${correctedRemainingFuel} kg`);
+
 

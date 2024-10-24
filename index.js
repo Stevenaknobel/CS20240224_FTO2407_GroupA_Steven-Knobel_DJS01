@@ -29,7 +29,17 @@ const calcRemainingFuel = ({fuel, fuelBurnRate, time}) => {
   return fuel - fuelUsed;
 }
 
-const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+//const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+//create a new const to calculate remaining fuel
+const calcNewVelocity = ({velocity, acceleration, time}) => {
+  //convert velocity from KM/h to m/s
+  const velocityMps = velocity * (1000/3600);
+  const newVelocityMps = velocityMps + (acceleration*time);
+
+  //change back to km/h
+  return newVelocityMps * (3600/1000);
+}
+
 
 // Pick up an error with how the function below is called and make it robust to such errors
 calcNewVel = (vel, acc, time) => { 

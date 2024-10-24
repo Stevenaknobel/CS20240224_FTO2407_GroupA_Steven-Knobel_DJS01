@@ -15,7 +15,13 @@ const parameters = {
   fuelBurnRate: 0.5 // fuel burn rate (kg/s)
 }
 
-const d2 = d + (vel*time) //calcultes new distance
+//const d2 = d + (vel*time) //calcultes new distance
+//create a new function that calculates the new distance
+const calcNewDistance = ({distance, velocity, time}) => {
+  return distance + (velocity * time);
+};
+
+
 const rf = fbr*time //calculates remaining fuel
 const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
 

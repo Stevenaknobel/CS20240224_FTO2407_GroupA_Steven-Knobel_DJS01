@@ -16,13 +16,19 @@ const parameters = {
 }
 
 //const d2 = d + (vel*time) //calcultes new distance
-//create a new function that calculates the new distance
+//create a new const that calculates the new distance
 const calcNewDistance = ({distance, velocity, time}) => {
   return distance + (velocity * time);
 };
 
 
-const rf = fbr*time //calculates remaining fuel
+//const rf = fbr*time //calculates remaining fuel
+//create a new const to calculate remaining fuel
+const calcRemainingFuel = ({fuel, fuelBurnRate, time}) => {
+  const fuelUsed = fuelBurnRate * time;
+  return fuel - fuelUsed;
+}
+
 const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
 
 // Pick up an error with how the function below is called and make it robust to such errors

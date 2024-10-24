@@ -18,7 +18,8 @@ const parameters = {
 //const d2 = d + (vel*time) //calcultes new distance
 //create a new const that calculates the new distance
 const calcNewDistance = ({distance, velocity, time}) => {
-  return distance + (velocity * time);
+  const timeHours = time / 3600;
+  return distance + (velocity * timeHours);
 };
 
 
